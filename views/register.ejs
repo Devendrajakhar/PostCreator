@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+<title>Register User</title>
+    <body>
+        <%- include('./partials/nav') %>
+            <div class="container mt-4">
+               <h3 class="text-center m-3"> Add User </h3>
+                <form class="row g-4" action="/register" method="POST">
+                    <div class="col-md-6">
+                        <label for="username" class="form-label">User Name</label>
+                        <input type="text" class="form-control" id="username" aria-describedby="usernameHelp"
+                            name="username" placeholder="Enter unique username">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" aria-describedby="nameHelp" name="name"
+                            placeholder="Enter your name">
+                    </div>
+                    <div class="col-6">
+                        <label for="age" class="form-label">Age</label>
+                        <input type="number" class="form-control" id="age" aria-describedby="ageHelp" name="age"
+                            placeholder="Enter your age">
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label for="Password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="password"
+                            placeholder="Enter your password">
+                    </div>
+                    <div class="col-12">
+                        <label for="Email" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            name="email" placeholder="Enter your email">
+                    </div>
+                    <div class="col-12 text-center">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+
+            </div>
+            <%- include('./partials/script') %>
+    </body>
+
+</html>

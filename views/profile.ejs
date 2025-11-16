@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+    <title>Profile</title>
+
+    <body>
+        <%- include('./partials/nav') %>
+            <div class="container mt-2">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a href="/logout" class="btn btn-danger mt-0" data-bs-toggle="tooltip" data-bs-placement="left"
+                        data-bs-title="Tooltip on left">Logout</a>
+                </div>
+                <h1 class="text-center">Welcome, <%= user.name %>
+                </h1>
+                <h2 class="text-center">Add Post</h2>
+                <form action="/post" method="POST">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="content">Body</label>
+                        <textarea class="form-control" id="content" name="content" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+
+
+
+                <h2 class="text-center">Your Posts</h2>
+                <% if  (user.posts.length===0)  { %>
+                 <h3 class="text-center text-muted">No Posts Yet</h3>
+                <% } %>
+                        <div class=" mb-5 d-flex flex-wrap gap-3 justify-content-center">
+                            <% user.posts.forEach(post=> { %>
+
+                                <div class="card" style="width: 18rem;">
+                                    <!-- <img src="..." class="card-img-top" alt="..."> -->
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <%= post.title %>
+                                        </h5>
+                                        <p class="card-text">
+                                            <%= post.content %>
+                                        </p>
+                                        <small class="text-muted">
+                                            <%= post.like.length %> 💝
+                                        </small>
+                                        <div class="d-flex gap-2 mt-2">
+                                            <a href="/like/<%= post._id %>" class="btn btn-primary">
+                                                <%= post.like.indexOf(user._id)===-1 ? "Like" : "Unlike" %>
+                                            </a>
+                                            <a href="/profile/post/edit/<%= post._id %>"
+                                                class="btn btn-warning">Edit</a>
+                                            <a href="/profile/post/delete/<%= post._id %>"
+                                                class="btn btn-danger">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }) %>
+                        </div>
+
+                        <%- include('./partials/script') %>
+    </body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+    <title>Post Edit</title>
+
+    <body>
+        <%- include('./partials/nav') %>
+            <div class="container mt-2">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a href="/logout" class="btn btn-danger mt-0" data-bs-toggle="tooltip" data-bs-placement="left"
+                        data-bs-title="Tooltip on left">Logout</a>
+                </div>
+                
+                <h2 class="text-center">Edit Post</h2>
+                <form action="/post/update/<%= post._id %>" method="POST">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" required value="<%= post.title %>"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="content">Body</label>
+                        <textarea class="form-control" id="content" name="content" required><%= post.content %></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+
+                <%- include('./partials/script') %>
+    </body>
+
+</html>
